@@ -1,6 +1,6 @@
 {
   "name": "@igins/cookie",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "封装的cookie方法",
   "main": "cookie.js",
   "keywords": [
@@ -20,6 +20,12 @@
   },
   "homepage": "https://github.com/GuoJikun/cookie#readme",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx webpack"
+  },
+  "devDependencies": {
+    "ts-loader": "^8.0.5",
+    "typescript": "^4.0.3",
+    "webpack": "^5.1.0",
+    "webpack-cli": "^4.0.0"
   }
 }

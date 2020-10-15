@@ -1,0 +1,12 @@
+{
+  "files": ["cookie.ts"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "module": "es6",
+    "target": "es2020",
+    "outDir": "./",
+    "declaration": true,
+    "declarationDir": "./"
+  }
+}
