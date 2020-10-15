@@ -1,0 +1,25 @@
+{
+  "name": "@igins/cookie",
+  "version": "1.0.1",
+  "description": "封装的cookie方法",
+  "main": "cookie.js",
+  "keywords": [
+    "cookie",
+    "cookies",
+    "cookiejs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuoJikun/cookie.git"
+  },
+  "author": "GuoJikun",
+  "license": "MIT",
+  "private": false,
+  "bugs": {
+    "url": "https://github.com/GuoJikun/cookie/issues"
+  },
+  "homepage": "https://github.com/GuoJikun/cookie#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
