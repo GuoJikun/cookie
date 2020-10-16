@@ -14,12 +14,12 @@
 |*|  * docCookies.setItem(name, value[, end[, path[, domain[, secure]]]])
 |*|  * docCookies.getItem(name)
 |*|  * docCookies.removeItem(name[, path], domain)
-|*|  * docCookies.hasItem(name)
+|*|  * docCookies.has(name)
 |*|  * docCookies.keys()
 |*|
 \*/
 /**
- * 添加cookie
+ * 获取cookie
  * @param sKey cookie的key
  */
 export function getItem(sKey: string) {
@@ -36,6 +36,15 @@ export function getItem(sKey: string) {
     ) || null
   );
 }
+/**
+ * 添加cookie
+ * @param sKey
+ * @param sValue
+ * @param vEnd
+ * @param sPath
+ * @param sDomain
+ * @param bSecure
+ */
 export function setItem(
   sKey: string,
   sValue: string,
@@ -74,8 +83,14 @@ export function setItem(
     (bSecure ? "; secure" : "");
   return true;
 }
-export function removeItem(sKey: string, sPath: string, sDomain: string) {
-  if (!sKey || !this.hasItem(sKey)) {
+/**
+ * 移除cookie
+ * @param sKey
+ * @param sPath
+ * @param sDomain
+ */
+export function removeItem(sKey: string, sPath?: string, sDomain?: string) {
+  if (!sKey || !has(sKey)) {
     return false;
   }
   document.cookie =
@@ -85,6 +100,10 @@ export function removeItem(sKey: string, sPath: string, sDomain: string) {
     (sPath ? "; path=" + sPath : "");
   return true;
 }
+/**
+ * 是否存在cookie
+ * @param sKey
+ */
 export function has(sKey: string) {
   return new RegExp(
     "(?:^|;\\s*)" +
