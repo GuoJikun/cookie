@@ -1,23 +1,3 @@
-/*\
-|*|
-|*|  :: cookies.js ::
-|*|
-|*|  A complete cookies reader/writer framework with full unicode support.
-|*|
-|*|  https://developer.mozilla.org/en-US/docs/DOM/document.cookie
-|*|
-|*|  This framework is released under the GNU Public License, version 3 or later.
-|*|  http://www.gnu.org/licenses/gpl-3.0-standalone.html
-|*|
-|*|  Syntaxes:
-|*|
-|*|  * docCookies.setItem(name, value[, end[, path[, domain[, secure]]]])
-|*|  * docCookies.getItem(name)
-|*|  * docCookies.removeItem(name[, path], domain)
-|*|  * docCookies.has(name)
-|*|  * docCookies.keys()
-|*|
-\*/
 /**
  * 获取cookie
  * @param sKey cookie的key
@@ -73,14 +53,12 @@ export function setItem(
         break;
     }
   }
-  document.cookie =
-    encodeURIComponent(sKey) +
-    "=" +
-    encodeURIComponent(sValue) +
-    sExpires +
-    (sDomain ? "; domain=" + sDomain : "") +
-    (sPath ? "; path=" + sPath : "") +
-    (bSecure ? "; secure" : "");
+  document.cookie = `
+    ${encodeURIComponent(sKey)}"="
+    ${encodeURIComponent(sValue)}
+    ${sExpires}${sDomain ? "; domain=" + sDomain : ""}
+    ${sPath ? "; path=" + sPath : ""}
+    ${bSecure ? "; secure" : ""}`;
   return true;
 }
 /**
@@ -115,19 +93,28 @@ export function has(sKey: string) {
  * 查看当前所有的cookie
  */
 export function keys() {
-  let aKeys = document.cookie
-    .replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, "")
-    .split(/\s*(?:\=[^;]*)?;\s*/);
-  for (let nIdx = 0; nIdx < aKeys.length; nIdx++) {
-    aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]);
+  const cookies = document.cookie.replace(
+    /((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g,
+    ""
+  );
+  if (cookies === "") {
+    return [];
+  } else {
+    let aKeys = cookies.split(/\s*(?:\=[^;]*)?;\s*/);
+    for (let nIdx = 0; nIdx < aKeys.length; nIdx++) {
+      aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]);
+    }
+    return aKeys;
   }
-  return aKeys;
 }
 /**
  * 清除cookie
  */
 export function clear() {
-  document.cookie = "";
+  const keyList = keys();
+  for (const key of keyList) {
+    removeItem(key);
+  }
 }
 export default {
   setItem,
