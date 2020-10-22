@@ -1,6 +1,6 @@
 {
   "name": "@igins/cookie",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "封装的cookie方法",
   "main": "cookie.js",
   "keywords": [

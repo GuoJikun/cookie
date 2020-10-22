@@ -53,12 +53,14 @@ export function setItem(
         break;
     }
   }
-  document.cookie = `
-    ${encodeURIComponent(sKey)}"="
-    ${encodeURIComponent(sValue)}
-    ${sExpires}${sDomain ? "; domain=" + sDomain : ""}
-    ${sPath ? "; path=" + sPath : ""}
-    ${bSecure ? "; secure" : ""}`;
+  document.cookie =
+    encodeURIComponent(sKey) +
+    "=" +
+    encodeURIComponent(sValue) +
+    sExpires +
+    (sDomain ? "; domain=" + sDomain : "") +
+    (sPath ? "; path=" + sPath : "") +
+    (bSecure ? "; secure" : "");
   return true;
 }
 /**
